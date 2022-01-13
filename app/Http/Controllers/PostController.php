@@ -41,7 +41,8 @@ class PostController extends Controller
         # Récupère depuis la requête le fichier uploadé. La méthode file() nous retourne un objet de type UploadedFile.
         $photo = $request->file('featuredImage');
 
-        //dd($photo);
+        $extention = $photo->guessExtension();
+
 
     }
 }

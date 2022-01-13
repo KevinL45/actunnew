@@ -22,6 +22,9 @@
                           value=""
                           placeholder="Le titre de votre article"
                           class="form-control">
+                          @error('title')
+                          <div class="invalid-feedback"> {{ $message }} </div>
+                          @enderror
                    <small class="form-text text-muted">Quel est le titre de votre article</small>
 
 
@@ -46,9 +49,14 @@
                    <label for="content" class="form-label">Contenu</label>
                    <textarea name="content"
                              id="content"
-                             class="form-control"
+                             class="form-control
+                             @error('content') is-invalid @enderror"
                              placeholder="Contenu de votre article"
-                             cols="30" rows="10"></textarea>
+                             cols="30" rows="10">
+                        @error('content')
+                          <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
+                        </textarea>
                    <small class="text-muted form-text">Saisissez le contenu de votre article</small>
 
                </div>
@@ -59,8 +67,11 @@
                           id="featuredImage"
                           name="featuredImage"
                           value=""
-                          class="form-control">
+                          class="form-control @error('featuredImage') is-invalid @enderror">
                    <small class="form-text text-muted">Choisissez l'illustration de votre article</small>
+                   @error('featuredImage')
+                          <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
 
                </div>
 
