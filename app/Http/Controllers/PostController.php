@@ -41,7 +41,16 @@ class PostController extends Controller
         # Récupère depuis la requête le fichier uploadé. La méthode file() nous retourne un objet de type UploadedFile.
         $photo = $request->file('featuredImage');
 
+        # Variabilise l'extension du fichier uploadé grâce à la méthode guessExtension() de UploadedFile.
+        // => cet appel est de confiance car la méthode s'appuie sur le mimeType du fichier.
         $extention = $photo->guessExtension();
+        # Récupération du nom original du fichier
+        $originalfilename = str_replace($extention,'',$photo->getClientOriginalName()) ;
+        dd($originalfilename);
+        # Génération d'un nouveau nom de fichier avec l'alias de l'article et l'extension variabilisée.
+        $newfilename= $alias.'-'.uniqid().'.'.$extention;
+
+        dd($newfilename);
 
 
     }
