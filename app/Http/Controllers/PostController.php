@@ -50,9 +50,22 @@ class PostController extends Controller
         # Génération d'un nouveau nom de fichier avec l'alias de l'article et l'extension variabilisée.
         $newfilename= $originalfilename.'-'.uniqid().'.'.$extention;
 
+        # storeAs() vous permet de déplacer le fichier dans le dossier
+        // => Elle permet de renommer le fichier qui va être déplacer
         $photo->storeAs('public/posts',$newfilename);
 
-        dd($photo);
+        $post = new Post();
+
+        $post->title = $request->input('title');
+        $post->alias = $alias;
+        $post->content = $request->input('content');
+        $post->photo = $newfilename;
+        //les relations
+        $post->category()->associate($category);
+
+
+
+
 
 
 
