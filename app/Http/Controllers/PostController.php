@@ -62,6 +62,12 @@ class PostController extends Controller
         $post->photo = $newfilename;
         //les relations
         $post->category()->associate($category);
+        $post->user()->associate(1);
+
+        $post->save();
+
+        return redirect('/');
+
 
 
 
