@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class PostController extends Controller
 {
@@ -24,12 +25,12 @@ class PostController extends Controller
            $this->validate(Request::capture(),[
                'title'=>'bail|required|max:255',
                'content'=>'required',
-
                'featuredImage'=>'bail|image|mimes:jpeg,jpg,png|max:3072'//3 mo
            ]);
 
-        } catch (\Throwable $th) {
+        } catch (ValidationException $exception) {
 
+            return back();
         }
         $category = Category::findOrFail($request->input('category'));
 
@@ -40,7 +41,7 @@ class PostController extends Controller
         # Récupère depuis la requête le fichier uploadé. La méthode file() nous retourne un objet de type UploadedFile.
         $photo = $request->file('featuredImage');
 
-        dd($photo);
+        //dd($photo);
 
     }
 }
