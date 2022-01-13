@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -32,7 +32,7 @@
                    <select id="category" name="category" class="form-control">
 
                         @foreach (\App\Models\Category::all() as $category)
-                        <option id="category" name="category" class="form-control">{{$category->name}}</option>
+                        <option value="{{$category->id}}" id="category" name="category" class="form-control">{{$category->name}}</option>
 
 
                         @endforeach
