@@ -9,6 +9,6 @@ class DefaultController extends Controller
 {
     public function home()
     {
-        return Response::view('default/home');
+        return Response::view('default.home');
     }
 }
