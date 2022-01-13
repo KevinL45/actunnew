@@ -46,11 +46,14 @@ class PostController extends Controller
         $extention = $photo->guessExtension();
         # Récupération du nom original du fichier
         $originalfilename = str_replace($extention,'',$photo->getClientOriginalName()) ;
-        dd($originalfilename);
-        # Génération d'un nouveau nom de fichier avec l'alias de l'article et l'extension variabilisée.
-        $newfilename= $alias.'-'.uniqid().'.'.$extention;
 
-        dd($newfilename);
+        # Génération d'un nouveau nom de fichier avec l'alias de l'article et l'extension variabilisée.
+        $newfilename= $originalfilename.'-'.uniqid().'.'.$extention;
+
+        $photo->storeAs('public/posts',$newfilename);
+
+        dd($photo);
+
 
 
     }
